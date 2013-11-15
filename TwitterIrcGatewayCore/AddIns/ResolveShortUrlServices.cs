@@ -21,13 +21,27 @@ namespace Misuzilla.Applications.TwitterIrcGateway.AddIns
         void Session_PreFilterProcessTimelineStatus(object sender, TimelineStatusEventArgs e)
         {
             // t.co (Twitter Url Shortener)
-            if (e.Status.Entities != null && e.Status.Entities.Urls != null && e.Status.Entities.Urls.Length > 0)
+            if (e.Status.Entities != null)
             {
-                foreach (var urlEntity in e.Status.Entities.Urls)
-                {
-                    if (!String.IsNullOrEmpty(urlEntity.ExpandedUrl))
+                if (e.Status.Entities.Urls != null && e.Status.Entities.Urls.Length > 0) {
+                    foreach (var urlEntity in e.Status.Entities.Urls)
                     {
-                        e.Text = Regex.Replace(e.Text, Regex.Escape(urlEntity.Url), urlEntity.ExpandedUrl);
+                        if (!String.IsNullOrEmpty(urlEntity.ExpandedUrl))
+                        {
+                            e.Text = Regex.Replace(e.Text, Regex.Escape(urlEntity.Url), urlEntity.ExpandedUrl);
+                        }
+                    }
+                }
+                if (e.Status.Entities.Media != null && e.Status.Entities.Media.Length > 0)
+                {
+                    foreach (var urlEntity in e.Status.Entities.Media)
+                    {
+                        if (!String.IsNullOrEmpty(urlEntity.ExpandedUrl))
+                        {
+                            String expandedUrl = Regex.Replace(urlEntity.ExpandedUrl, "^http:", "https:");
+                            if (!Regex.IsMatch(expandedUrl, "/large$")) expandedUrl += "/large";
+                            e.Text = Regex.Replace(e.Text, Regex.Escape(urlEntity.Url), expandedUrl);
+                        }
                     }
                 }
             }

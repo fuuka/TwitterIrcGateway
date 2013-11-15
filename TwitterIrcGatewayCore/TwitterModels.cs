@@ -208,8 +208,8 @@ namespace Misuzilla.Applications.TwitterIrcGateway
     /// </summary>
     public class Entities
     {
-        //[XmlElement("media")]
-        //public MediaEntity[] Media;
+        [JsonProperty("media")]
+        public MediaEntity[] Media;
         [JsonProperty("urls")]
         public UrlEntity[] Urls;
         [JsonProperty("hashtags")]
@@ -234,7 +234,7 @@ namespace Misuzilla.Applications.TwitterIrcGateway
     }
 
     /// <summary>
-    /// URLエンティティの情報を表します。
+    /// ハッシュタグエンティティの情報を表します。
     /// </summary>
     public class HashtagEntity
     {
@@ -256,57 +256,54 @@ namespace Misuzilla.Applications.TwitterIrcGateway
         }
     }
 
-    ///// <summary>
-    ///// メディアエンティティの情報を表します。
-    ///// </summary>
-    //[XmlType("creative")]
-    //public class MediaEntity
-    //{
-    //    [XmlElement("id")]
-    //    public Int64 Id;
-    //    [XmlElement("id_str")]
-    //    public String IdStr;
-    //    [XmlElement("media_url")]
-    //    public String MediaUrl;
-    //    [XmlElement("media_url_https")]
-    //    public String MediaUrlHttps;
-    //    [XmlElement("url")]
-    //    public String Url;
-    //    [XmlElement("display_url")]
-    //    public String DisplayUrl;
-    //    [XmlElement("expanded_url")]
-    //    public String ExpandedUrl;
-    //    [XmlElement("sizes")]
-    //    public MediaEntity.EntitySizes Sizes;
-    //    [XmlElement("type")]
-    //    public String Type;
-    //    [XmlAttribute("start")]
-    //    public Int32 Start;
-    //    [XmlAttribute("end")]
-    //    public Int32 End;
+    /// <summary>
+    /// メディアエンティティの情報を表します。
+    /// </summary>
+    public class MediaEntity
+    {
+        [JsonProperty("id")]
+        public Int64 Id;
+        [JsonProperty("id_str")]
+        public String IdStr;
+        [JsonProperty("media_url")]
+        public String MediaUrl;
+        [JsonProperty("media_url_https")]
+        public String MediaUrlHttps;
+        [JsonProperty("url")]
+        public String Url;
+        [JsonProperty("display_url")]
+        public String DisplayUrl;
+        [JsonProperty("expanded_url")]
+        public String ExpandedUrl;
+        [JsonProperty("sizes")]
+        public MediaEntity.EntitySizes Sizes;
+        [JsonProperty("type")]
+        public String Type;
+//        [XmlAttribute("start")]
+//        public Int32 Start;
+//        [XmlAttribute("end")]
+//        public Int32 End;
 
-    //    [XmlType("size")]
-    //    public class EntitySize
-    //    {
-    //        [XmlElement("resize")]
-    //        public String Resize;
-    //        [XmlElement("w")]
-    //        public Int32 W;
-    //        [XmlElement("h")]
-    //        public Int32 H;
-    //    }
+        public class EntitySize
+        {
+            [JsonProperty("resize")]
+            public String Resize;
+            [JsonProperty("w")]
+            public Int32 W;
+            [JsonProperty("h")]
+            public Int32 H;
+        }
 
-    //    [XmlType("size")]
-    //    public class EntitySizes
-    //    {
-    //        [XmlElement("large")]
-    //        public EntitySize Large;
-    //        [XmlElement("medium")]
-    //        public EntitySize Medium;
-    //        [XmlElement("small")]
-    //        public EntitySize Small;
-    //        [XmlElement("thumb")]
-    //        public EntitySize Thumb;
-    //    }
-    //}
+        public class EntitySizes
+        {
+            [JsonProperty("large")]
+            public EntitySize Large;
+            [JsonProperty("medium")]
+            public EntitySize Medium;
+            [JsonProperty("small")]
+            public EntitySize Small;
+            [JsonProperty("thumb")]
+            public EntitySize Thumb;
+        }
+    }
 }
