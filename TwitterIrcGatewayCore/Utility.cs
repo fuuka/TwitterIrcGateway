@@ -75,7 +75,7 @@ namespace Misuzilla.Applications.TwitterIrcGateway
         }
 
         /// <summary>
-        /// 文中の htn.to, t.co, bit.ly, j.mp を展開します。
+        /// 文中の htn.to, bit.ly, j.mp, goo.gl, smar.ws, ow.ly, dlvr.it, buff.ly を展開します。
         /// </summary>
         /// <param name="message">メッセージ</param>
         /// <param name="timeOut">タイムアウトするまでの時間</param>
@@ -83,16 +83,16 @@ namespace Misuzilla.Applications.TwitterIrcGateway
         public static String ResolveShortUrlInMessage(String message, Int32 timeOut)
         {
             // 改行ゴミがついてるのでついでに削除する
-            return Regex.Replace(message, @"(http://(?:htn\.to|t\.co|bit\.ly|j\.mp)/[A-Za-z0-9_/.;%&\-]+)[\r\n]*", delegate(Match m)
+            return Regex.Replace(message, @"(http://(?:htn\.to|bit\.ly|j\.mp|goo\.gl|smar\.ws|www\.smartnews\.be/s|ow\.ly|dlvr\.it|buff\.ly)/[A-Za-z0-9_/.;%&\-]+)[\r\n]*", delegate(Match m)
             {
                 return ResolveRedirectUrl(m.Groups[1].Value, timeOut);
             }, RegexOptions.IgnoreCase);
         }
 
         /// <summary>
-        /// TinyURLをリダイレクト先のURLに展開します。
+        /// 短縮URLをリダイレクト先のURLに展開します。
         /// </summary>
-        /// <param name="url">TinyURLのURL</param>
+        /// <param name="url">短縮URLのURL</param>
         /// <param name="timeOut">タイムアウトするまでの時間</param>
         /// <returns></returns>
         public static String ResolveRedirectUrl(String url, Int32 timeOut)
