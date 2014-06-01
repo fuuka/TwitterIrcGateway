@@ -39,7 +39,6 @@ namespace Misuzilla.Applications.TwitterIrcGateway.AddIns
                         if (!String.IsNullOrEmpty(urlEntity.ExpandedUrl))
                         {
                             String expandedUrl = Regex.Replace(urlEntity.ExpandedUrl, "^http:", "https:");
-                            if (!Regex.IsMatch(expandedUrl, "/large$")) expandedUrl += "/large";
                             e.Text = Regex.Replace(e.Text, Regex.Escape(urlEntity.Url), expandedUrl);
                         }
                     }
