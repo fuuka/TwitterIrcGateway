@@ -36,7 +36,9 @@ namespace Misuzilla.Applications.TwitterIrcGateway
         /// サーバのエラーメッセージを送信します
         /// </summary>
         /// <param name="message"></param>
-        void SendServerErrorMessage(String message);
+        /// <param name="callerName">auto generate by compiler</param>
+        /// <param name="lineNumber">auto generate by compiler</param>
+        void SendServerErrorMessage(String message, string callerName, int lineNumber);
 
         /// <summary>
         /// サーバからクライアントにエラーリプライを返します。

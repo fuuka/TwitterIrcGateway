@@ -86,7 +86,6 @@ namespace Misuzilla.Applications.TwitterIrcGateway
         [JsonProperty("previous_cursor")]
         public Int64 PreviousCursor { get; set; }
     }
-
     /// <summary>
     /// ステータスを表します。
     /// </summary>
@@ -98,6 +97,10 @@ namespace Misuzilla.Applications.TwitterIrcGateway
         public String InReplyToStatusId;
         [JsonProperty("in_reply_to_user_id")]
         public String InReplyToUserId;
+        [JsonProperty("quoted_status_id")]
+        public String QuotedStatusId;
+        [JsonProperty("quoted_status")]
+        public Status QuotedStatus;
         [JsonProperty("retweeted_status")]
         public Status RetweetedStatus;
         [JsonProperty("user")]
@@ -121,6 +124,15 @@ namespace Misuzilla.Applications.TwitterIrcGateway
 
         [JsonProperty("text")]
         public String _textOriginal { get; set; }
+        [JsonProperty("full_text")]
+        public String _fullTextOriginal { get; set; }
+
+        /// <summary>
+        /// 拡張情報
+        /// </summary>
+        [JsonProperty("extended_tweet")]
+        public ExtendedStatus Extended;
+
         [JsonIgnore]
         private String _text { get; set; }
         [JsonIgnore]
@@ -128,7 +140,20 @@ namespace Misuzilla.Applications.TwitterIrcGateway
         {
             get
             {
-                if (!String.IsNullOrEmpty(_textOriginal) && _text == null)
+                String tmpText;
+                if (Extended != null && !String.IsNullOrEmpty(Extended._fullTextOriginal))
+                {
+                    tmpText = Extended._fullTextOriginal;
+                }
+                else if (!String.IsNullOrEmpty(_fullTextOriginal))
+                {
+                    tmpText = _fullTextOriginal;
+                }
+                else
+                {
+                    tmpText = _textOriginal;
+                }
+                if (!String.IsNullOrEmpty(tmpText) && _text == null)
                 {
                     _text = Utility.UnescapeCharReference(_textOriginal);
                 }
@@ -201,6 +226,18 @@ namespace Misuzilla.Applications.TwitterIrcGateway
         {
             return String.Format("User: {0} / {1} (ID:{2})", ScreenName, Name, Id.ToString());
         }
+    }
+
+    /// <summary>
+    /// ステータスの拡張情報
+    /// </summary>
+    public class ExtendedStatus
+    {
+        [JsonProperty("full_text")]
+        public String _fullTextOriginal { get; set; }
+
+        [JsonProperty("entities")]
+        public Entities Entities;
     }
 
     /// <summary>

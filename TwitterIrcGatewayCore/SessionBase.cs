@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -291,11 +292,11 @@ namespace Misuzilla.Applications.TwitterIrcGateway
         /// サーバのエラーメッセージを送信します
         /// </summary>
         /// <param name="message"></param>
-        public void SendServerErrorMessage(String message)
+        public void SendServerErrorMessage(String message, [CallerMemberName] string callerName = "", [CallerLineNumber] int lineNumber = 0)
         {
 //            if (!_config.IgnoreWatchError)
             {
-                SendGatewayServerMessage("エラー: " + message);
+                SendGatewayServerMessage(String.Format("エラー: {0} ({1}:{2})", message, callerName, lineNumber));
             }
         }
 

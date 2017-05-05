@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.CompilerServices;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
@@ -338,9 +339,9 @@ namespace Misuzilla.Applications.TwitterIrcGateway
         /// サーバのエラーメッセージを送信します
         /// </summary>
         /// <param name="message"></param>
-        public void SendServerErrorMessage(String message)
+        public void SendServerErrorMessage(String message, [CallerMemberName] string callerName = "", [CallerLineNumber] int lineNumber = 0)
         {
-            SendGatewayServerMessage("エラー: " + message);
+            SendGatewayServerMessage(String.Format("エラー: {0} ({1}:{2})", message, callerName, lineNumber));
         }
 
         /// <summary>
