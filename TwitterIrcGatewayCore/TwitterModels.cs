@@ -155,7 +155,7 @@ namespace Misuzilla.Applications.TwitterIrcGateway
                 }
                 if (!String.IsNullOrEmpty(tmpText) && _text == null)
                 {
-                    _text = Utility.UnescapeCharReference(_textOriginal);
+                    _text = Utility.UnescapeCharReference(tmpText);
                 }
 
                 return _text ?? "";

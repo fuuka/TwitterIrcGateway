@@ -21,10 +21,20 @@ namespace Misuzilla.Applications.TwitterIrcGateway.AddIns
         void Session_PreFilterProcessTimelineStatus(object sender, TimelineStatusEventArgs e)
         {
             // t.co (Twitter Url Shortener)
+            List<Entities> entities_list = new List<Entities>();
+            if (e.Status.Extended != null && e.Status.Extended.Entities != null)
+            {
+                entities_list.Add(e.Status.Extended.Entities);
+            }
             if (e.Status.Entities != null)
             {
-                if (e.Status.Entities.Urls != null && e.Status.Entities.Urls.Length > 0) {
-                    foreach (var urlEntity in e.Status.Entities.Urls)
+                entities_list.Add(e.Status.Entities);
+            }
+            foreach (var entities in entities_list)
+            {
+                if (entities.Urls != null && entities.Urls.Length > 0)
+                {
+                    foreach (var urlEntity in entities.Urls)
                     {
                         if (!String.IsNullOrEmpty(urlEntity.ExpandedUrl))
                         {
@@ -32,9 +42,9 @@ namespace Misuzilla.Applications.TwitterIrcGateway.AddIns
                         }
                     }
                 }
-                if (e.Status.Entities.Media != null && e.Status.Entities.Media.Length > 0)
+                if (entities.Media != null && entities.Media.Length > 0)
                 {
-                    foreach (var urlEntity in e.Status.Entities.Media)
+                    foreach (var urlEntity in entities.Media)
                     {
                         if (!String.IsNullOrEmpty(urlEntity.ExpandedUrl))
                         {
