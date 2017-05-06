@@ -407,7 +407,7 @@ namespace Misuzilla.Applications.TwitterIrcGateway
         {
             return ExecuteRequest<Statuses>(() =>
             {
-                String responseBody = GETv1_1(String.Format("/statuses/home_timeline.json?since={0}&count={1}&include_entities=true", Utility.UrlEncode(since.ToUniversalTime().ToString("r")), count), "/statuses/home_timeline");
+                String responseBody = GETv1_1(String.Format("/statuses/home_timeline.json?since={0}&count={1}&include_entities=true&tweet_mode=extended", Utility.UrlEncode(since.ToUniversalTime().ToString("r")), count), "/statuses/home_timeline");
                 Statuses statuses = new Statuses();
                 statuses.Status = JsonConvert.DeserializeObject<List<Status>>(responseBody).ToArray();
 
@@ -435,7 +435,7 @@ namespace Misuzilla.Applications.TwitterIrcGateway
         {
             return ExecuteRequest<Statuses>(() =>
             {
-                String responseBody = GETv1_1(String.Format("/statuses/home_timeline.json?since_id={0}&count={1}&include_entities=true", sinceId, count), "/statuses/home_timeline");
+                String responseBody = GETv1_1(String.Format("/statuses/home_timeline.json?since_id={0}&count={1}&include_entities=true&tweet_mode=extended", sinceId, count), "/statuses/home_timeline");
                 Statuses statuses = new Statuses();
                 statuses.Status = JsonConvert.DeserializeObject<List<Status>>(responseBody).ToArray();
 
@@ -452,7 +452,7 @@ namespace Misuzilla.Applications.TwitterIrcGateway
         {
             return ExecuteRequest<Status>(() =>
             {
-                String responseBody = GETv1_1(String.Format("/statuses/show.json?id={0}&include_entities=true", id), "/statuses/show/:id");
+                String responseBody = GETv1_1(String.Format("/statuses/show.json?id={0}&include_entities=true&tweet_mode=extended", id), "/statuses/show/:id");
                 return JsonConvert.DeserializeObject<Status>(responseBody);
             });
         }
