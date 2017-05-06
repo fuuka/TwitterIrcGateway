@@ -131,7 +131,7 @@ namespace Misuzilla.Applications.TwitterIrcGateway
         /// 拡張情報
         /// </summary>
         [JsonProperty("extended_tweet")]
-        public ExtendedStatus Extended;
+        public ExtendedStatus ExtendedStatus;
 
         [JsonIgnore]
         private String _text { get; set; }
@@ -141,9 +141,9 @@ namespace Misuzilla.Applications.TwitterIrcGateway
             get
             {
                 String tmpText;
-                if (Extended != null && !String.IsNullOrEmpty(Extended._fullTextOriginal))
+                if (ExtendedStatus != null && !String.IsNullOrEmpty(ExtendedStatus._fullTextOriginal))
                 {
-                    tmpText = Extended._fullTextOriginal;
+                    tmpText = ExtendedStatus._fullTextOriginal;
                 }
                 else if (!String.IsNullOrEmpty(_fullTextOriginal))
                 {

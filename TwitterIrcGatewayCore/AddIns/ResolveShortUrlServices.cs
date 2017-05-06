@@ -22,9 +22,9 @@ namespace Misuzilla.Applications.TwitterIrcGateway.AddIns
         {
             // t.co (Twitter Url Shortener)
             List<Entities> entities_list = new List<Entities>();
-            if (e.Status.Extended != null && e.Status.Extended.Entities != null)
+            if (e.Status.ExtendedStatus != null && e.Status.ExtendedStatus.Entities != null)
             {
-                entities_list.Add(e.Status.Extended.Entities);
+                entities_list.Add(e.Status.ExtendedStatus.Entities);
             }
             if (e.Status.Entities != null)
             {
