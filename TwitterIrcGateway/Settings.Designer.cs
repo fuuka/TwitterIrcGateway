@@ -12,7 +12,7 @@ namespace Misuzilla.Applications.TwitterIrcGateway {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "10.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "12.0.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -56,18 +56,6 @@ namespace Misuzilla.Applications.TwitterIrcGateway {
             }
             set {
                 this["Interval"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("ISO-2022-JP")]
-        public string Charset {
-            get {
-                return ((string)(this["Charset"]));
-            }
-            set {
-                this["Charset"] = value;
             }
         }
         
@@ -296,6 +284,18 @@ namespace Misuzilla.Applications.TwitterIrcGateway {
             }
             set {
                 this["OAuthSecretKey"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("UTF-8")]
+        public string Charset {
+            get {
+                return ((string)(this["Charset"]));
+            }
+            set {
+                this["Charset"] = value;
             }
         }
     }

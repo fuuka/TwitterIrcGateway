@@ -11,9 +11,6 @@
     <Setting Name="Interval" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">90</Value>
     </Setting>
-    <Setting Name="Charset" Type="System.String" Scope="User">
-      <Value Profile="(Default)">ISO-2022-JP</Value>
-    </Setting>
     <Setting Name="IgnoreWatchError" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
@@ -70,6 +67,9 @@
     </Setting>
     <Setting Name="OAuthSecretKey" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Charset" Type="System.String" Scope="User">
+      <Value Profile="(Default)">UTF-8</Value>
     </Setting>
   </Settings>
 </SettingsFile>
