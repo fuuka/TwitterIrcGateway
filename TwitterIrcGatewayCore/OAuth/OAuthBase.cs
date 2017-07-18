@@ -136,6 +136,11 @@ namespace OAuth {
                     if (!string.IsNullOrEmpty(s) && !s.StartsWith(OAuthParameterPrefix)) {
                         if (s.IndexOf('=') > -1) {
                             string[] temp = s.Split('=');
+                            //hack for .NET 4.5
+                            if (temp[1].Contains(":"))
+                            {
+                                temp[1] = temp[1].Replace(":", "%3A");
+                            }
                             result.Add(new QueryParameter(temp[0], temp[1]));
                         } else {
                             result.Add(new QueryParameter(s, string.Empty));
